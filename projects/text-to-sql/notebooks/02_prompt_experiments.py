@@ -1,0 +1,38 @@
+# Databricks notebook source
+# MAGIC %md
+# MAGIC # 02. Prompt Experiments
+# MAGIC 프롬프트 구성과 모델 호출을 실험하는 노트북.
+# MAGIC 모델 방식(LLM API / 파인튜닝)이 정해지면 inference.py에 구현체를 추가하고
+# MAGIC 아래 `model = ...` 부분을 교체하세요.
+
+# COMMAND ----------
+
+import sys, os
+sys.path.append(os.path.abspath("../src"))
+
+from text_to_sql import schema_loader, prompts, inference
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 더미 모델로 파이프라인 흐름 확인
+
+# COMMAND ----------
+
+model = inference.DummyTextToSQLModel()
+
+question = "지난달 카테고리별 매출 합계를 보여줘"
+schema_context = "-- TODO: schema_loader로 실제 테이블 DDL 채우기"
+
+sql = model.generate_sql(question, schema_context)
+print(sql)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## 실제 모델 연결 후 (예시, 아직 미구현)
+# MAGIC ```python
+# MAGIC model = inference.AnthropicTextToSQL(model_name="claude-sonnet-4-6")
+# MAGIC sql = model.generate_sql(question, schema_context)
+# MAGIC ```
+

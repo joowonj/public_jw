@@ -1,0 +1,22 @@
+# Text-to-SQL 프로젝트 설정
+# 값이 정해지면 채워 넣으세요.
+
+databricks:
+  catalog: null          # 예: "main"
+  schemas: []            # 예: ["sales", "marketing"]
+  warehouse_id: null     # SQL Warehouse ID (쿼리 실행 시 필요)
+
+model:
+  provider: null          # "anthropic" | "openai" | "finetuned" 등, 아직 미정
+  model_name: null
+  temperature: 0.0
+
+prompt:
+  include_schema_ddl: true
+  include_sample_rows: false
+  max_tables_in_context: 20
+
+evaluation:
+  metrics:
+    - exact_match
+    - execution_accuracy
